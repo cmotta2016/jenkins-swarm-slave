@@ -23,9 +23,6 @@ pipeline {
             }
         }
         stage('Push') {
-            when {
-                branch 'master'
-            }
             steps {
                 echo 'Deploying docker images'
                 sh 'docker tag cmotta2016/jenkins-slave:$GIT_COMMIT cmotta2016/jenkins-slave:$APP_VERSION'
@@ -33,6 +30,12 @@ pipeline {
                 sh 'docker push cmotta2016/jenkins-slave:$APP_VERSION'
                 sh 'docker push cmotta2016/jenkins-slave:latest'
             }
+        }
+    }
+    post {
+        always {
+            // Always cleanup after the build.
+            sh 'docker rmi -f cmotta2016/jenkins-slave:$GIT_COMMIT cmotta2016/jenkins-slave:$APP_VERSION'
         }
     }
 }
