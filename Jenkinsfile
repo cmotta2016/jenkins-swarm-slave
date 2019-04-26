@@ -2,7 +2,7 @@ pipeline {
     agent { label 'docker' }
     environment {
         // Specify your environment variables.
-        APP_VERSION = '1'
+        APP_VERSION = '1.1'
     }
     stages {
         stage('Build') {
