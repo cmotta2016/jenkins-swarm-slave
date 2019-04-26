@@ -37,7 +37,7 @@ pipeline {
     post {
         always {
             // Always cleanup after the build.
-            sh 'docker rmi -f cmotta2016/jenkins-slave:$GIT_COMMIT cmotta2016/jenkins-slave:$APP_VERSION'
+            sh 'docker rmi -f cmotta2016/jenkins-slave:$GIT_COMMIT cmotta2016/jenkins-slave:$APP_VERSION cmotta2016/jenkins-slave:latest'
         }
     }
 }
