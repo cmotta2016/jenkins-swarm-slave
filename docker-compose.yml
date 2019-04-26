@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  agent:
+    image: cmotta2016/jenkins-slave
+    deploy:
+      mode: global
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp:/tmp
+    networks:
+      - jenkins
+
+networks:
+  jenkins:
