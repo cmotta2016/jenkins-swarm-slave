@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  agent:
+    image: cmotta2016/jenkins-swarm-slave
+    deploy:
+      mode: global
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/jenkins:/var/lib/jenkins
+    environment:
+      MASTER:    http://192.168.0.5:8080
+      USERNAME:  admin
+      PASSWORD:  jenkins
+      EXECUTORS: 3
+    networks:
+      - jenkins
+
+networks:
+  jenkins:
