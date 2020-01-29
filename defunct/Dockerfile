@@ -72,10 +72,15 @@ COPY files/swarm-client-${JENKINS_SWARM_VERSION}.jar /usr/share/jenkins/swarm-cl
 COPY files/jenkins-slave.sh /usr/local/bin/jenkins-slave.sh
 
 RUN chmod  755 /usr/share/jenkins/swarm-client-${JENKINS_SWARM_VERSION}.jar  /usr/local/bin/jenkins-slave.sh
+# Add Tini
+ENV TINI_VERSION v0.18.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
 
 USER ${user}
 WORKDIR ${JENKINS_HOME}
-
 ENV JENKINS_HOME_OUT ${JENKINS_HOME}
 
-ENTRYPOINT ["/usr/local/bin/jenkins-slave.sh"]
+#ENTRYPOINT ["/usr/local/bin/jenkins-slave.sh"]
+ENTRYPOINT ["/tini", "--"]
+CMD ["/usr/local/bin/jenkins-slave.sh"]
