@@ -3,6 +3,7 @@ version: "3.7"
 services:
   agent:
     image: cmotta2016/jenkins-swarm-slave
+    init: true # Added in version 3.7 file format.
     deploy:
       mode: global
     volumes:
