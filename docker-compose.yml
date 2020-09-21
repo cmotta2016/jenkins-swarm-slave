@@ -2,6 +2,9 @@ version: "3.7"
 
 services:
   agent:
+    build:
+      context: ./
+      dockerfile: Dockerfile
     image: cmotta2016/jenkins-slave
     deploy:
       mode: global

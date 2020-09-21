@@ -23,10 +23,10 @@ RUN adduser -S -s /bin/sh -D -u $UID -G root jenkins && \
 ENV JENKINS_MEMORY=200M
 
 # O nome do server dessa variável corresponde ao nome do service dentro do compose da stack master
-ENV SWARM_MASTER=http://jenkins:8080
+ENV SWARM_MASTER=<jenkins_master_url>
 ENV SWARM_EXECUTORS=3
-ENV SWARM_USERNAME=admin
-ENV SWARM_PASSWORD=admin
+ENV SWARM_USERNAME=<user>
+ENV SWARM_PASSWORD=<password>
 ENV SWARM_LABELS="docker linux swarm amd64"
 ENV MYTIMEZONE="America/Sao_Paulo"
 ENV JAVA_OPTS="-Xms$JENKINS_MEMORY -Xmx$JENKINS_MEMORY -Djava.awt.headless=true -Duser.timezone=$MYTIMEZONE -Dorg.apache.commons.jelly.tags.fmt.timeZone=$MYTIMEZONE"
